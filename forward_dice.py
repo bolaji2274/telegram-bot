@@ -33,19 +33,25 @@ async def forward_dice():
         # Fetch recent messages from Saved Messages
         async for message in client.iter_messages('me', limit=5):
             print(f"Message: {message.message}")
-            if message.message:  # Check if the message is a dice
-                print(f"Dice result found: {message.message}")
+            if message.dice:  # Check if the message is a dice
+                print(f"Dice result found: {message.dice.value}")
 
                 # Send a new dice message to the target group
                 # await client.send_message(TARGET_GROUP, file=message.media)
                 
                 # Copy the message to the target group (removes forward mark)
-                await client.send_message(TARGET_GROUP, message.message)
+                new_message = f"🎲 Dice result: {message.dice.value}"
+                await client.send_message(TARGET_GROUP, new_message)
 
                 # print(f"Dice sent to group with result: {message.dice.value}")
-                print("Message copied to the target group without forward mark.")
+                print(f"Dice result copied to group: {new_message}")
 
                 return  # Exit after forwarding one dice
+        # try:
+        #     dice_message = await client.send_message(TARGET_GROUP, file='🎲')
+        #     print(f"Dice message sent with value: {dice_message.dice.value}")
+        # except Exception as e:
+        #     print(f"Error sending dice message: {e}")
 
         print("No dice message found in Saved Messages.")
 
