@@ -2,3 +2,8 @@ pip -m venv env
 pip install telethon
 pip install python-dotenv
 pip install telethon --index-url https://pypi.org/simple
+pygame
+pillow
+PyOpenGL
+PyOpenGL_accelerate
+numpy

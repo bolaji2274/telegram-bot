@@ -37,15 +37,25 @@ async def forward_dice():
                 print(f"Dice result found: {message.dice.value}")
 
                 # Send a new dice message to the target group
-                # await client.send_message(TARGET_GROUP, file=message.media)
+                await client.send_message(TARGET_GROUP, file=message.media)
                 
                 # Copy the message to the target group (removes forward mark)
                 new_message = f"🎲 Dice result: {message.dice.value}"
                 await client.send_message(TARGET_GROUP, new_message)
 
-                # print(f"Dice sent to group with result: {message.dice.value}")
+                print(f"Dice sent to group with result: {message.dice.value}")
                 print(f"Dice result copied to group: {new_message}")
+                
+                
+                 # Send a new dice to the target group (result will be random)
+                # dice_message = await client.send_dice(TARGET_GROUP, emoji="🎲")
 
+                # # Follow up with the correct result in a separate message
+                # result_message = f"Original Dice Result: 🎲 {message.dice.value}"
+                # await client.send_message(TARGET_GROUP, result_message)
+                
+                # print(f"Dice and result sent to group: {TARGET_GROUP}")
+                
                 return  # Exit after forwarding one dice
         # try:
         #     dice_message = await client.send_message(TARGET_GROUP, file='🎲')
